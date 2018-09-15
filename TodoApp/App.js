@@ -5,7 +5,8 @@ import {
   Text, 
   View,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 
 export default class App extends Component<Props> {
@@ -29,7 +30,6 @@ export default class App extends Component<Props> {
   }
   render() {
     const {newTodo, todos} = this.state
-    console.log(this.state)
     return (
       <View style={styles.container}>
         <TextInput
@@ -43,6 +43,15 @@ export default class App extends Component<Props> {
         >
           <Text style={styles.addButtonText}>ADD</Text>
         </TouchableOpacity>
+        <ScrollView style={styles.scrollView}>
+          {
+            this.state.todos.map((todo, index) => (
+              <View key={todo+index} style={styles.todoContainer}>
+                <Text>{todo}</Text>
+              </View>
+            ))
+          }
+        </ScrollView>
       </View>
     );
   }
@@ -68,4 +77,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
   },
+  scrollView: {
+    backgroundColor: "#DDD"
+  },
+  todoContainer: {
+    backgroundColor: "#FFF",
+    padding: 10
+  }
 });
