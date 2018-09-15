@@ -29,6 +29,11 @@ export default class App extends Component<Props> {
       todos: [newTodo, ...this.state.todos],
     })
   }
+  onPressDelete(index) {
+    this.setState({
+      todos: this.state.todos.filter((t,i) => i !== index)
+    })
+  }
   render() {
     const {newTodo, todos} = this.state
     return (
@@ -44,7 +49,10 @@ export default class App extends Component<Props> {
         >
           <Text style={styles.addButtonText}>ADD</Text>
         </TouchableOpacity>
-        <TodoList todos = {this.state.todos}/>
+        <TodoList 
+          todos = {this.state.todos}
+          onPressDelete = {(index) => this.onPressDelete(index)}
+        />
       </View>
     );
   }
