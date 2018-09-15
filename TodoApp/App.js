@@ -9,10 +9,12 @@ import {
 } from 'react-native';
 
 export default class App extends Component<Props> {
-
-  state = {
-    newTodo: '',
-    todos: []
+  constructor(props) {
+    super(props)
+    this.state = {
+      newTodo: '',
+      todos: [],
+    }
   }
   
   onChangeText(newTodo) {
@@ -22,10 +24,11 @@ export default class App extends Component<Props> {
     const {newTodo} = this.state
     this.setState({
       newTodo: '',
-      todos: [newTodo, ...this.state.newTodo],
+      todos: [newTodo, ...this.state.todos],
     })
   }
   render() {
+    const {newTodo, todos} = this.state
     console.log(this.state)
     return (
       <View style={styles.container}>
